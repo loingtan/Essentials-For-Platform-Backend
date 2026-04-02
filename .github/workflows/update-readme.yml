@@ -1,0 +1,87 @@
+name: Update README Table of Contents
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.md'
+      - '!README.md'
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Regenerate README content table
+        run: |
+          python3 - <<'EOF'
+          import os, re
+
+          # Collect all .md files except README.md, sorted alphabetically
+          docs = sorted(
+              f for f in os.listdir('.')
+              if f.endswith('.md') and f.lower() != 'readme.md'
+          )
+
+          def extract_description(path):
+              """Return the first non-heading, non-empty paragraph line."""
+              with open(path, encoding='utf-8') as fh:
+                  for line in fh:
+                      line = line.strip()
+                      if line and not line.startswith('#') and not line.startswith('---'):
+                          # Strip markdown link syntax for a clean description
+                          clean = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', line)
+                          # Truncate long descriptions
+                          return clean[:120] + ('…' if len(clean) > 120 else '')
+              return ''
+
+          def make_title(filename):
+              """Convert a filename like foo_bar.md to a readable title."""
+              name = os.path.splitext(filename)[0]
+              return name.replace('_', ' ').replace('-', ' ').title()
+
+          rows = []
+          for doc in docs:
+              title = make_title(doc)
+              desc  = extract_description(doc)
+              rows.append(f'| [{title}]({doc}) | {desc} |')
+
+          table = (
+              '| Guide | Description |\n'
+              '|-------|-------------|\n' +
+              '\n'.join(rows)
+          )
+
+          with open('README.md', encoding='utf-8') as fh:
+              content = fh.read()
+
+          new_content = re.sub(
+              r'<!-- TOC_START -->.*?<!-- TOC_END -->',
+              f'<!-- TOC_START -->\n{table}\n<!-- TOC_END -->',
+              content,
+              flags=re.DOTALL,
+          )
+
+          with open('README.md', 'w', encoding='utf-8') as fh:
+              fh.write(new_content)
+
+          print("README.md updated successfully.")
+          EOF
+
+      - name: Commit updated README
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet README.md || (
+            git add README.md &&
+            git commit -m "docs: auto-update README content table [skip ci]" &&
+            git push
+          )
