@@ -11,8 +11,10 @@ A collection of in-depth technical guides covering the core concepts every backe
 |-------|-------------|
 | [Osi Model Deep Dive Backend Engineers](OSI_Model_Deep_Dive_Backend_Engineers.md) | 1. Introduction to the OSI Model |
 | [Authorization Models Deepdive](authorization_models_deepdive.md) | Authorization models form the foundation of modern access control systems, determining **who can access what resources u… |
+| [Kubernetes Container Runtime Deep Dive](kubernetes_container_runtime_deep_dive.md) | Container runtimes form the foundational execution layer of Kubernetes, responsible for creating, managing, and orchestr… |
 | [Kubernetes Networking Research](kubernetes_networking_research.md) | 1. Introduction to Kubernetes Networking |
 | [Kubernetes Storage Research](kubernetes_storage_research.md) | 1. Introduction |
+| [Kubernetes Troubleshooting Research](kubernetes_troubleshooting_research.md) | Kubernetes troubleshooting is a critical skill for DevOps engineers, SREs, and platform teams. According to the Spectro … |
 | [Linux Fundamentals Backend](linux_fundamentals_backend.md) | A practical guide covering the essential Linux skills every backend engineer needs for development, deployment, and trou… |
 | [Percona Mysql Kubernetes Deep Dive](percona_mysql_kubernetes_deep_dive.md) | Running Percona MySQL (Percona XtraDB Cluster and Percona Server for MySQL) in Kubernetes has evolved from experimental … |
 <!-- TOC_END -->
