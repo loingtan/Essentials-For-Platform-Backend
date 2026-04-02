@@ -10,6 +10,7 @@ A collection of in-depth technical guides covering the core concepts every backe
 | Guide | Description |
 |-------|-------------|
 | [Osi Model Deep Dive Backend Engineers](OSI_Model_Deep_Dive_Backend_Engineers.md) | 1. Introduction to the OSI Model |
+| [Authorization Models Deepdive](authorization_models_deepdive.md) | Authorization models form the foundation of modern access control systems, determining **who can access what resources u… |
 | [Kubernetes Networking Research](kubernetes_networking_research.md) | 1. Introduction to Kubernetes Networking |
 | [Kubernetes Storage Research](kubernetes_storage_research.md) | 1. Introduction |
 | [Linux Fundamentals Backend](linux_fundamentals_backend.md) | A practical guide covering the essential Linux skills every backend engineer needs for development, deployment, and trou… |
