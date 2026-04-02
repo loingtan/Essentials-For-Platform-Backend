@@ -9,9 +9,11 @@ A collection of in-depth technical guides covering the core concepts every backe
 <!-- TOC_START -->
 | Guide | Description |
 |-------|-------------|
-| [OSI Model Deep Dive for Backend Engineers](OSI_Model_Deep_Dive_Backend_Engineers.md) | The 7 OSI layers, TCP/IP comparison, load balancers, container networking, encryption, MTU/MSS, connection pooling, and troubleshooting. |
-| [Kubernetes Networking Research](kubernetes_networking_research.md) | CNI plugins, Service types, Ingress controllers, Network Policies, DNS/service discovery, kube-proxy, and best practices. |
-| [Linux Fundamentals for Backend Engineers](linux_fundamentals_backend.md) | Essential Linux skills for development, deployment, and troubleshooting — commands, processes, networking, and more. |
+| [Osi Model Deep Dive Backend Engineers](OSI_Model_Deep_Dive_Backend_Engineers.md) | 1. Introduction to the OSI Model |
+| [Kubernetes Networking Research](kubernetes_networking_research.md) | 1. Introduction to Kubernetes Networking |
+| [Kubernetes Storage Research](kubernetes_storage_research.md) | 1. Introduction |
+| [Linux Fundamentals Backend](linux_fundamentals_backend.md) | A practical guide covering the essential Linux skills every backend engineer needs for development, deployment, and trou… |
+| [Percona Mysql Kubernetes Deep Dive](percona_mysql_kubernetes_deep_dive.md) | Running Percona MySQL (Percona XtraDB Cluster and Percona Server for MySQL) in Kubernetes has evolved from experimental … |
 <!-- TOC_END -->
 
 ---
