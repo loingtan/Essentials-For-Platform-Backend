@@ -5,7 +5,8 @@ on:
     branches:
       - main
     paths:
-      - '**.md'
+      - '**/*.md'
+      - '*.md'
       - '!README.md'
 
 jobs:
@@ -24,12 +25,23 @@ jobs:
         run: |
           python3 - <<'EOF'
           import os, re
+          from collections import defaultdict
 
-          # Collect all .md files except README.md, sorted alphabetically
-          docs = sorted(
-              f for f in os.listdir('.')
-              if f.endswith('.md') and f.lower() != 'readme.md'
-          )
+          # Collect all .md files except README.md, recursively.
+          docs = []
+          for root, _, files in os.walk('.'):
+              if root.startswith('./.git'):
+                  continue
+              for filename in files:
+                  if not filename.endswith('.md'):
+                      continue
+                  path = os.path.normpath(os.path.join(root, filename))
+                  rel = os.path.relpath(path, '.')
+                  if rel.lower() == 'readme.md':
+                      continue
+                  docs.append(rel)
+
+          docs = sorted(docs)
 
           def extract_description(path):
               """Return the first non-heading, non-empty paragraph line."""
@@ -45,20 +57,31 @@ jobs:
 
           def make_title(filename):
               """Convert a filename like foo_bar.md to a readable title."""
-              name = os.path.splitext(filename)[0]
+              name = os.path.splitext(os.path.basename(filename))[0]
               return name.replace('_', ' ').replace('-', ' ').title()
 
-          rows = []
+          grouped_docs = defaultdict(list)
           for doc in docs:
-              title = make_title(doc)
-              desc  = extract_description(doc)
-              rows.append(f'| [{title}]({doc}) | {desc} |')
+              folder = os.path.dirname(doc) or '.'
+              grouped_docs[folder].append(doc)
 
-          table = (
-              '| Guide | Description |\n'
-              '|-------|-------------|\n' +
-              '\n'.join(rows)
-          )
+          sections = []
+          for folder in sorted(grouped_docs):
+              context = 'Root' if folder == '.' else folder
+              rows = []
+              for doc in sorted(grouped_docs[folder]):
+                  title = make_title(doc)
+                  desc  = extract_description(doc)
+                  rows.append(f'| [{title}]({doc}) | {desc} |')
+              section = (
+                  f'#### {context}\n\n'
+                  '| Guide | Description |\n'
+                  '|-------|-------------|\n' +
+                  '\n'.join(rows)
+              )
+              sections.append(section)
+
+          table = '\n\n'.join(sections)
 
           with open('README.md', encoding='utf-8') as fh:
               content = fh.read()
