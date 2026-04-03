@@ -5,8 +5,7 @@ on:
     branches:
       - main
     paths:
-      - '**/*.md'
-      - '*.md'
+      - '**.md'
       - '!README.md'
 
 jobs:
@@ -75,7 +74,7 @@ jobs:
           for folder in sorted(grouped_docs):
               context = make_context_label(folder)
               rows = []
-              for doc in sorted(grouped_docs[folder]):
+              for doc in grouped_docs[folder]:
                   title = make_title(doc)
                   desc  = extract_description(doc)
                   rows.append(f'| [{title}]({doc}) | {desc} |')
