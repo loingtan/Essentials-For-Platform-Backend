@@ -56,10 +56,13 @@ jobs:
                           return clean[:120] + ('…' if len(clean) > 120 else '')
               return ''
 
+          def prettify_name(name):
+              return name.replace('_', ' ').replace('-', ' ').title()
+
           def make_title(filename):
               """Convert a filename like foo_bar.md to a readable title."""
               name = os.path.splitext(os.path.basename(filename))[0]
-              return name.replace('_', ' ').replace('-', ' ').title()
+              return prettify_name(name)
 
           grouped_docs = defaultdict(list)
           for doc in docs:
@@ -69,7 +72,7 @@ jobs:
           def make_context_label(folder):
               if folder == '.':
                   return 'Root'
-              parts = [p.replace('_', ' ').replace('-', ' ').title() for p in Path(os.path.normpath(folder)).parts]
+              parts = [prettify_name(p) for p in Path(os.path.normpath(folder)).parts]
               return ' / '.join(parts)
 
           sections = []
