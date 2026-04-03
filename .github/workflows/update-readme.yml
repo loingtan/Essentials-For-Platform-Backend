@@ -24,12 +24,14 @@ jobs:
         run: |
           python3 - <<'EOF'
           import os, re
+          from pathlib import Path
           from collections import defaultdict
 
           # Collect all .md files except README.md, recursively.
           docs = []
           for root, _, files in os.walk('.'):
-              if root.startswith('./.git'):
+              parts = Path(root).parts
+              if any(part.startswith('.') and part != '.' for part in parts):
                   continue
               for filename in files:
                   if not filename.endswith('.md'):
@@ -67,7 +69,7 @@ jobs:
           def make_context_label(folder):
               if folder == '.':
                   return 'Root'
-              parts = [p.replace('_', ' ').replace('-', ' ').title() for p in folder.split(os.sep)]
+              parts = [p.replace('_', ' ').replace('-', ' ').title() for p in Path(os.path.normpath(folder)).parts]
               return ' / '.join(parts)
 
           sections = []
