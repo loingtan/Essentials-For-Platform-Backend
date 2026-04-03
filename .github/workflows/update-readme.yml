@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - '**/*.md'
-      - '*.md'
       - '!README.md'
 
 jobs:
@@ -65,9 +64,15 @@ jobs:
               folder = os.path.dirname(doc) or '.'
               grouped_docs[folder].append(doc)
 
+          def make_context_label(folder):
+              if folder == '.':
+                  return 'Root'
+              parts = [p.replace('_', ' ').replace('-', ' ').title() for p in folder.split(os.sep)]
+              return ' / '.join(parts)
+
           sections = []
           for folder in sorted(grouped_docs):
-              context = 'Root' if folder == '.' else folder
+              context = make_context_label(folder)
               rows = []
               for doc in sorted(grouped_docs[folder]):
                   title = make_title(doc)
