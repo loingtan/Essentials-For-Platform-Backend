@@ -19,6 +19,10 @@ A collection of in-depth technical guides covering the core concepts every backe
 | [Kubernetes Troubleshooting Research](kubernetes_troubleshooting_research.md) | Kubernetes troubleshooting is a critical skill for DevOps engineers, SREs, and platform teams. According to the Spectro … |
 | [Linux Fundamentals Backend](linux_fundamentals_backend.md) | A practical guide covering the essential Linux skills every backend engineer needs for development, deployment, and trou… |
 | [Percona Mysql Kubernetes Deep Dive](percona_mysql_kubernetes_deep_dive.md) | Running Percona MySQL (Percona XtraDB Cluster and Percona Server for MySQL) in Kubernetes has evolved from experimental … |
+| [Prometheus Deep Dive Research](prometheus_deep_dive_research.md) | Prometheus is an open-source monitoring and alerting toolkit that has become the **de facto standard for metrics-based m… |
+| [Redis Cluster Vs Sentinel Deep Dive](redis_cluster_vs_sentinel_deep_dive.md) | Redis offers two distinct high-availability solutions that serve different architectural needs: **Redis Sentinel** and *… |
+| [Redis Comprehensive Research](redis_comprehensive_research.md) | Redis (REmote DIctionary Server) is an open-source, in-memory data structure store that has become one of the most widel… |
+| [Redis Kubernetes Deep Dive](redis_kubernetes_deep_dive.md) | Running Redis in Kubernetes requires careful consideration of architecture, persistence, high availability, and operatio… |
 | [Tcp Udp Deep Dive](tcp_udp_deep_dive.md) | Transmission Control Protocol (TCP) and User Datagram Protocol (UDP) are the two primary transport layer protocols that … |
 <!-- TOC_END -->
 
