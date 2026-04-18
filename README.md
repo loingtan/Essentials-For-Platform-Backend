@@ -14,6 +14,7 @@ A collection of in-depth technical guides covering the core concepts every backe
 | [Authorization Models Deepdive](authorization_models_deepdive.md) | Authorization models form the foundation of modern access control systems, determining **who can access what resources u… |
 | [Kubernetes Container Runtime Deep Dive](kubernetes_container_runtime_deep_dive.md) | Container runtimes form the foundational execution layer of Kubernetes, responsible for creating, managing, and orchestr… |
 | [Kubernetes Networking Research](kubernetes_networking_research.md) | 1. Introduction to Kubernetes Networking |
+| [Kubernetes Storage Deep Dive Connected](kubernetes_storage_deep_dive_connected.md) | This guide is written as one continuous story. |
 | [Kubernetes Storage Research](kubernetes_storage_research.md) | 1. Introduction |
 | [Kubernetes Troubleshooting Research](kubernetes_troubleshooting_research.md) | Kubernetes troubleshooting is a critical skill for DevOps engineers, SREs, and platform teams. According to the Spectro … |
 | [Linux Fundamentals Backend](linux_fundamentals_backend.md) | A practical guide covering the essential Linux skills every backend engineer needs for development, deployment, and trou… |
